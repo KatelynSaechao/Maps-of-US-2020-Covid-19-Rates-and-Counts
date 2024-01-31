@@ -3108,4 +3108,3 @@
 { "type": "Feature", "properties": { "county": "Sumter", "state": "Georgia", "fips": "13261", "cases": 1708, "deaths": 74 }, "geometry": { "type": "Point", "coordinates": [ 1106543.15177213633433, 1064629.126821099547669 ] } }
 ]
 }
- 
