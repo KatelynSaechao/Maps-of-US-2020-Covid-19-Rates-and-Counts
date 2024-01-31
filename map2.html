@@ -62,13 +62,14 @@
         a {
             color: black
         }
+        
     </style>
 </head>
 
 <body>
     <div id="map"></div>
     <div id="legend"></div>
-    <script>
+    <script>     
         mapboxgl.accessToken =
         'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5icTFxZ3ZkdncifQ.P9MBej1xacybKcDN_jehvw';
         let map = new mapboxgl.Map({
@@ -78,18 +79,19 @@
             zoom: 5, // starting zoom
             minZoom: 4,
         });
-        const grades = [4, 5, 6], 
+        const grades = [500, 2500, 100000], 
             colors = ['rgb(208,209,230)', 'rgb(103,169,207)', 'rgb(1,108,89)'], 
             radii = [5, 15, 20];
-        
+
+        map.setProjection('albers');
         //load data to the map as new layers.
         //map.on('load', function loadingData() {
         map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
             // when loading a geojson, there are two steps
             // add a source of the data and then add the layer out of the source
             map.addSource('us-covid-2020-counts', {
-                type: 'json',
-                data: 'assets/us-covid-2020-counts.json'
+                type: 'geojson',
+                data: 'assets/testus-covid-2020-counts.geojson'
             });
             map.addLayer({
                 'id': 'us-covid-2020-counts-point',
