@@ -97,7 +97,7 @@
                 'id': 'us-covid-2020-counts-albers-point',
                 'type': 'circle',
                 'source': 'us-covid-2020-counts',
-                'minzoom': 5,
+                'minzoom': 2,
                 'paint': {
                     // increase the radii of the circle as the zoom level and dbh value increases
                     'circle-radius': {
@@ -149,7 +149,7 @@
         }
 
         const source =
-            '<p style="text-align: right; font-size:10pt">Source: <a href="https://earthquake.usgs.gov/earthquakes/">USGS</a></p>';
+            '<p style="text-align: right; font-size:10pt">Source: <a href="https://github.com/nytimes/covid-19-data/blob/43d32dde2f87bd4dafbb7d23f5d9e878124018b8/live/us-counties.csv">New York Times</a></p>';
 
         // combine all the html codes.
         legend.innerHTML = labels.join('') + source;
