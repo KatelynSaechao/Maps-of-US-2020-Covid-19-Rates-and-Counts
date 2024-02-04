@@ -61,27 +61,74 @@
         /* the text color of a hyper link */
         a {
             color: black
-        }
         
+        }
+
+        #title {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-top: 20px;
+            margin-left: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 25pt;
+            color: white
+        }
+
+        #author {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-top: 70px;
+            margin-left: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 19pt;
+            color: white
+        }
+
+        #subtitle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-top: 110px;
+            margin-left: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15pt;
+            color: white
+        }
     </style>
 </head>
 
 <body>
     <div id="map"></div>
     <div id="legend"></div>
+    <div id="title">
+        US 2020 Covid-19 Cases
+    </div>
+    <div id="author">
+        Created By: Katelyn Saechao
+    </div>
+    <div id="subtitle">
+        Symbols on the map are proportional <br>
+        to the number of Covid-19 cases in <br>
+        each county. Zoom in and click <br>
+        on the dots to see the county, <br>
+        state, and the number of Covid-19 <br>
+        cases in that given area.
+    </div>
     <script>     
         mapboxgl.accessToken =
         'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5icTFxZ3ZkdncifQ.P9MBej1xacybKcDN_jehvw';
         let map = new mapboxgl.Map({
             container: 'map', // container ID
             style: 'mapbox://styles/mapbox/dark-v10', // style URL
-            center: [-96, 37.5], // starting position [lng, lat]
-            zoom: 5, // starting zoom
-            minZoom: 4,
+            center: [-102, 37.5], // starting position [lng, lat]
+            zoom: 3.25, // starting zoom
+            //minZoom: 4,
         });
-        const grades = [500, 2500, 10000], 
-            colors = ['rgb(208,209,230)', 'rgb(103,169,207)', 'rgb(1,108,89)'], 
-            radii = [5, 15, 20];
+        const grades = [5000, 15000, 25000], 
+            colors = ["#ffffb2", "#fd8d3c", "#bd0026"], 
+            radii = [1.75, 5, 7];
 
         map.setProjection('albers');
         //load data to the map as new layers.
@@ -125,7 +172,8 @@
             map.on('click', 'us-covid-2020-counts-albers-point', (event) => {
                 new mapboxgl.Popup()
                     .setLngLat(event.features[0].geometry.coordinates)
-                    .setHTML(`<strong>Cases:</strong> ${event.features[0].properties.cases}`)
+                    .setHTML(`<strong>County, State:</strong> ${event.features[0].properties.county}, ${event.features[0].properties.state}<br>
+                    <strong>Cases:</strong> ${event.features[0].properties.cases}`)
                     .addTo(map);
             });
         });
